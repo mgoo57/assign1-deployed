@@ -1,0 +1,18 @@
+<!-- author_detail.html -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ author.first_name }} {{ author.last_name }}</h1>
+  <p>Date of Birth: {{ author.date_of_birth }}</p>
+  <p>Date of Death: {{ author.date_of_death }}</p>
+
+  <!-- Display the books by this author -->
+  <h2>Books by {{ author.first_name }} {{ author.last_name }}</h2>
+  <ul>
+    {% for book in books %}
+        <li><a href="{% url 'book_detail' book.id %}">{{ book.title }}</a></li>
+    {% empty %}
+        <li>No books available for this author.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
